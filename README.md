@@ -74,3 +74,4 @@ When the instructor updates the original repo, your fork won’t automatically u
 
 Course: **COMP1006 – Intro to Web Programming with PHP **
 Instructor: * Jess Gilfillan *
+"# midterm" 
