@@ -1,11 +1,15 @@
 <?php
 require "includes/header.php";
-//connect to the database 
 
+// Connect to the database
+$pdo = new PDO('mysql:host=localhost;dbname=your_database', 'username', 'password');
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// select everything 
-
-
+// Select everything
+$query = "SELECT * FROM orders";
+$statement = $pdo->prepare($query);
+$statement->execute();
+$orders = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main class="container mt-4">
@@ -16,7 +20,6 @@ require "includes/header.php";
     <?php else: ?>
         <ul>
             <?php foreach ($orders as $order): 
-                //loop through and display items 
                 // Calculate total items
                 $total =
                     $order['chaos_croissant']
@@ -68,9 +71,11 @@ require "includes/header.php";
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
-    <?php //close the db connection 
-    $pdo = null
+
+    <?php // Close the db connection
+    $pdo = null; // ← also added the missing semicolon here
     ?>
+
     <p class="mt-3">
         <a href="index.php">Back to Order Form</a>
     </p>
